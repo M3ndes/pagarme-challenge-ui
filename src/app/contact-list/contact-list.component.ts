@@ -24,7 +24,6 @@ export class ContactListComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const contact = await this.contactService.all();
-    console.log(contact);
     this.dataSource.push(contact);
     this.dataSource = [...this.dataSource];
   }
