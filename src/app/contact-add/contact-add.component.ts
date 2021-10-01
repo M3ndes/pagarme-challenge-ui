@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ContactService } from '../services/contact.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contact-add',
@@ -22,16 +23,49 @@ export class ContactAddComponent implements OnInit {
   }
 
   async saveContact(data: any): Promise<void> {
-    const payload = new FormData();
-    payload.append('name', data.contact.name);
-    payload.append('phone', '5599683660');
+    if (!data.contact.name) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'você precisa informar um nome para o contato.'
+      });
+      return;
+    }
+    if (!data.contact.phone) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'você precisa informar um telefone para o contato.'
+      });
+      return;
+    }
+
+    const payload = { name: data.contact.name, phone: data.contact.phone };
     await this.contactService.create(payload);
     this.dialogRef.close();
     this.reload('/contact');
   }
 
   async editContact(data: any): Promise<void> {
-    const body = { name: data.contact.name, phone: '5599683660' };
+    if (!data.contact.name) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'você precisa informar um nome para o contato.'
+      });
+      return;
+    }
+
+    if (!data.contact.phone) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'você precisa informar um telefone para o contato.'
+      });
+      return;
+    }
+
+    const body = { name: data.contact.name, phone: data.contact.phone };
     await this.contactService.update(body, data.contact.id);
     this.dialogRef.close();
     this.reload('/contact');
