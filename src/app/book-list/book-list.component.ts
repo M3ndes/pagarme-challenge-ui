@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BookService } from '../services/book.service';
-import { ComponentDialogComponent } from '../shared/component-dialog/component-dialog.component';
+import { BookAddComponent } from '../book-add/book-add.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
@@ -9,37 +10,43 @@ import { ComponentDialogComponent } from '../shared/component-dialog/component-d
   styleUrls: ['./book-list.component.css'],
   providers: [BookService]
 })
+
 export class BookListComponent implements OnInit {
-  animal!: string;
   name!: string;
   book!: any;
-  displayedColumns: string[] = ['id', 'name', 'borrowed', 'contact_id'];
+  displayedColumns: string[] = ['id', 'name', 'borrowed', 'contact_id', 'actions'];
   dataSource: any[] = [];
   constructor(
     public dialog: MatDialog,
-    private bookService: BookService
+    private bookService: BookService,
+    private router: Router
   ) { }
 
   async ngOnInit(): Promise<void> {
-    this.getBooks();
-  }
-
-  async getBooks(): Promise<any> {
     const book = await this.bookService.all();
     this.dataSource.push(book);
     this.dataSource = [...this.dataSource];
-    return;
   }
-  
-  openDialog(data: any): void {
-    const dialogRef = this.dialog.open(ComponentDialogComponent, {
-      width: '250px',
-      data: { name: '', animal: '' }
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+  async deleteBook(id: any): Promise<void> {
+    await this.bookService.delete(id);
+    this.reload('/book');
+  }
+
+  bookAdd(book: any): void {
+    if (book == null) {
+      book = {
+        name: ''
+      }
+    }
+    const dialogRef = this.dialog.open(BookAddComponent, {
+      width: '250px',
+      data: { book }
     });
+  }
+
+  async reload(url: string): Promise<boolean> {
+    await this.router.navigateByUrl('/', { skipLocationChange: true });
+    return this.router.navigateByUrl(url);
   }
 }

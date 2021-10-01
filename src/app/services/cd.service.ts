@@ -11,4 +11,19 @@ export class CdService{
         const response: ICd = await this.http.get<ICd>(this.apiUrl).toPromise();
         return response;
       }
+
+      async create(payload: any): Promise<ICd> {
+        const response: ICd = await this.http.post<ICd>(this.apiUrl, payload).toPromise();
+        return response;
+      }
+
+      async update(body: any, id: number): Promise<ICd> {
+        const response: ICd = await this.http.put<ICd>(`${this.apiUrl}/${id}`, body).toPromise();
+        return response;
+      }
+
+      async delete(id: any): Promise<ICd> {
+        const response: ICd = await this.http.delete<ICd>(`${this.apiUrl}/${id}`).toPromise();
+        return response;
+      }
 }

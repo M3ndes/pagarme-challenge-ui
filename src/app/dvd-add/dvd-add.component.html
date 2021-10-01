@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Adicionar Dvd</h1>
+<mat-card>
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="data.dvd.name">
+  </mat-form-field>
+</mat-card>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Voltar</button>
+  <button mat-button (click)="saveDvd(data)" *ngIf="!data.dvd.id">Salvar</button>
+  <button mat-button (click)="editDvd(data)" *ngIf="data.dvd.id">Editar</button>
+</div>  

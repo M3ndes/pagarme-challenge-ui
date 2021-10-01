@@ -1,0 +1,13 @@
+<h1 mat-dialog-title *ngIf="!data.book.id">Adicionar Livro</h1>
+<h1 mat-dialog-title *ngIf="data.book.id">Editar Livro</h1>
+<mat-card>
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="data.book.name">
+  </mat-form-field>
+</mat-card>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Voltar</button>
+  <button mat-button (click)="saveBook(data)" *ngIf="!data.book.id">Salvar</button>
+  <button mat-button (click)="editBook(data)" *ngIf="data.book.id">Editar</button>
+</div>  

@@ -1,0 +1,13 @@
+<h1 mat-dialog-title *ngIf="!data.cd.id">Adicionar Cd</h1>
+<h1 mat-dialog-title *ngIf="data.cd.id">Editar Cd</h1>
+<mat-card>
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="data.cd.name">
+  </mat-form-field>
+</mat-card>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Voltar</button>
+  <button mat-button (click)="saveCd(data)" *ngIf="!data.cd.id">Salvar</button>
+  <button mat-button (click)="editCd(data)" *ngIf="data.cd.id">Editar</button>
+</div>  

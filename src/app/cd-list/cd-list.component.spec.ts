@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CdsListComponent } from './cds-list.component';
+import { CdListComponent } from './cd-list.component';
 
-describe('CdsListComponent', () => {
-  let component: CdsListComponent;
-  let fixture: ComponentFixture<CdsListComponent>;
+describe('CdListComponent', () => {
+  let component: CdListComponent;
+  let fixture: ComponentFixture<CdListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CdsListComponent ]
+      declarations: [ CdListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CdsListComponent);
+    fixture = TestBed.createComponent(CdListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

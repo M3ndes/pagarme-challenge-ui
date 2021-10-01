@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ContactService } from '../services/contact.service';
-import { ComponentDialogComponent } from '../shared/component-dialog/component-dialog.component';
+import { ContactAddComponent } from '../contact-add/contact-add.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-list',
@@ -9,39 +10,44 @@ import { ComponentDialogComponent } from '../shared/component-dialog/component-d
   styleUrls: ['./contact-list.component.css'],
   providers: [ContactService]
 })
-export class ContactListComponent implements OnInit {
 
-  animal!: string;
+export class ContactListComponent implements OnInit {
   name!: string;
   contact!: any;
-  displayedColumns: string[] = ['id', 'name', 'phone'];
+  displayedColumns: string[] = ['id', 'name', 'phone', 'actions'];
   dataSource: any[] = [];
   constructor(
     public dialog: MatDialog,
-    private ContactService: ContactService
+    private contactService: ContactService,
+    private router: Router
   ) { }
 
   async ngOnInit(): Promise<void> {
-    this.getcontacts();
-  }
-
-  async getcontacts(): Promise<any> {
-    const contact = await this.ContactService.all();
+    const contact = await this.contactService.all();
     console.log(contact);
     this.dataSource.push(contact);
     this.dataSource = [...this.dataSource];
-    return;
   }
-  
-  openDialog(data: any): void {
-    const dialogRef = this.dialog.open(ComponentDialogComponent, {
-      width: '250px',
-      data: { name: '', animal: '' }
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+  async deleteContact(id: any): Promise<void> {
+    await this.contactService.delete(id);
+    this.reload('/contact');
+  }
+
+  contactAdd(contact: any): void {
+    if (contact == null) {
+      contact = {
+        name: ''
+      }
+    }
+    const dialogRef = this.dialog.open(ContactAddComponent, {
+      width: '250px',
+      data: { contact }
     });
+  }
+
+  async reload(url: string): Promise<boolean> {
+    await this.router.navigateByUrl('/', { skipLocationChange: true });
+    return this.router.navigateByUrl(url);
   }
 }

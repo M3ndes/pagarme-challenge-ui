@@ -1,0 +1,13 @@
+<h1 mat-dialog-title *ngIf="!data.contact.id">Adicionar Contato</h1>
+<h1 mat-dialog-title *ngIf="data.contact.id">Editar Contato</h1>
+<mat-card>
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="data.contact.name">
+  </mat-form-field>
+</mat-card>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Voltar</button>
+  <button mat-button (click)="saveContact(data)" *ngIf="!data.contact.id">Salvar</button>
+  <button mat-button (click)="editContact(data)" *ngIf="data.contact.id">Editar</button>
+</div>  

@@ -16,12 +16,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { CdsListComponent } from './cds-list/cds-list.component';
+import { CdListComponent } from './cd-list/cd-list.component';
 import { DvdListComponent } from './dvd-list/dvd-list.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MatCardModule } from '@angular/material/card';
+import { BookAddComponent } from './book-add/book-add.component';
+import { DvdAddComponent } from './dvd-add/dvd-add.component';
+import { CdAddComponent } from './cd-add/cd-add.component';
+import { ContactAddComponent } from './contact-add/contact-add.component';
 
 
 @NgModule({
@@ -30,11 +34,15 @@ import { MatCardModule } from '@angular/material/card';
     HeaderComponent,
     FooterComponent,
     ComponentDialogComponent,
-    CdsListComponent,
+    CdListComponent,
     DvdListComponent,
     ContactListComponent,
     BookListComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    BookAddComponent,
+    DvdAddComponent,
+    CdAddComponent,
+    ContactAddComponent
   ],
   imports: [
     BrowserModule,

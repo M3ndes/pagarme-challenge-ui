@@ -1,46 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { DvdService } from '../services/dvd.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DvdAddComponent } from '../dvd-add/dvd-add.component';
+import { CdService } from '../services/cd.service';
+import { CdAddComponent } from '../cd-add/cd-add.component';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-dvd-list',
-  templateUrl: './dvd-list.component.html',
-  styleUrls: ['./dvd-list.component.css'],
-  providers: [DvdService]
+  selector: 'app-cd-list',
+  templateUrl: './cd-list.component.html',
+  styleUrls: ['./cd-list.component.css'],
+  providers: [CdService]
 })
-export class DvdListComponent implements OnInit {
+export class CdListComponent implements OnInit {
   name!: string;
-  dvd!: any;
+  cd!: any;
   displayedColumns: string[] = ['id', 'name', 'borrowed', 'contact_id', 'actions'];
   dataSource: any[] = [];
   constructor(
     public dialog: MatDialog,
-    private dvdService: DvdService,
+    private cdService: CdService,
     private router: Router
   ) { }
 
   async ngOnInit(): Promise<void> {
-    const dvd = await this.dvdService.all();
-    this.dataSource.push(dvd);
+    const cd = await this.cdService.all();
+    this.dataSource.push(cd);
     this.dataSource = [...this.dataSource];
   }
 
-  async deleteDvd(id: any): Promise<void> {
-    await this.dvdService.delete(id);
-    this.reload('/dvd');
+  async deleteCd(id: any): Promise<void> {
+    await this.cdService.delete(id);
+    this.reload('/cd');
   }
 
-  dvdAdd(dvd: any): void {
-    if (dvd == null) {
-      dvd = {
+  cdAdd(cd: any): void {
+    if (cd == null) {
+      cd = {
         name: ''
       }
     }
-    const dialogRef = this.dialog.open(DvdAddComponent, {
+    const dialogRef = this.dialog.open(CdAddComponent, {
       width: '250px',
-      data: { dvd }
+      data: { cd }
     });
   }
 
@@ -48,5 +48,5 @@ export class DvdListComponent implements OnInit {
     await this.router.navigateByUrl('/', { skipLocationChange: true });
     return this.router.navigateByUrl(url);
   }
-  
+
 }
