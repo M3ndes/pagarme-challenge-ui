@@ -8,22 +8,22 @@
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="borrowed">
-      <th mat-header-cell *matHeaderCellDef> Borrowed </th>
+      <th mat-header-cell *matHeaderCellDef> Emprestado </th>
       <td mat-cell *matCellDef="let element"> {{ element.borrowed === '1' ? 'SIM' : 'NÃO' }} </td>
     </ng-container>
 
     <ng-container matColumnDef="contact_id">
-      <th mat-header-cell *matHeaderCellDef> Contact </th>
+      <th mat-header-cell *matHeaderCellDef> Contato </th>
       <td mat-cell *matCellDef="let element"> {{element.contact_id}} </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
       <td mat-cell *matCellDef="let element">
         <button mat-icon-button color="primary" (click)="cdAdd(element)">
           <mat-icon>edit</mat-icon>
