@@ -50,7 +50,6 @@ export class BookAddComponent implements OnInit {
 
     const payload = { name: data.book.name, borrowed: this.isChecked(), contact_id: this.contact_id };
     await this.bookService.create(payload);
-
     this.dialogRef.close();
     this.reload('/book');
   }

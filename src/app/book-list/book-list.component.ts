@@ -33,7 +33,6 @@ export class BookListComponent implements OnInit {
   }
 
   async deleteBook(id: any): Promise<void> {
-
     const result = await Swal.fire({
       title: 'Atenção!',
       text: 'Você tem certeza que deseja deletar esse registro?',
