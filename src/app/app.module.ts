@@ -26,6 +26,11 @@ import { BookAddComponent } from './book-add/book-add.component';
 import { DvdAddComponent } from './dvd-add/dvd-add.component';
 import { CdAddComponent } from './cd-add/cd-add.component';
 import { ContactAddComponent } from './contact-add/contact-add.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 @NgModule({
@@ -57,7 +62,11 @@ import { ContactAddComponent } from './contact-add/contact-add.component';
     MatInputModule,
     FormsModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatSelectModule
 
   ],
   providers: [],

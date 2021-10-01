@@ -3,11 +3,25 @@
 <mat-card>
   <mat-form-field>
     <mat-label>Nome</mat-label>
-    <input matInput [(ngModel)]="data.book.name">
+    <input matInput [(ngModel)]="data.book.name" required>
   </mat-form-field>
+
+  <mat-slide-toggle class="mt-5" (change)="slideChange($event)">Emprestado</mat-slide-toggle>
+
+  <mat-form-field class="mt-5" *ngIf="isChecked()">
+    <mat-label>Contato</mat-label>
+    <mat-select (selectionChange)="changeContact($event.value)">
+        <mat-option *ngFor="let contact of contacts[0]" [value]="contact.id">
+          {{contact.name}}
+        </mat-option>
+    </mat-select>
+  </mat-form-field>
+
 </mat-card>
+
+
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Voltar</button>
   <button mat-button (click)="saveBook(data)" *ngIf="!data.book.id">Salvar</button>
   <button mat-button (click)="editBook(data)" *ngIf="data.book.id">Editar</button>
-</div>  
+</div>

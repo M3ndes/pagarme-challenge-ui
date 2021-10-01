@@ -12,6 +12,11 @@ export class ContactService {
     return response;
   }
 
+  async find(id: any): Promise<IContact> {
+    const response: IContact = await this.http.get<IContact>(`${this.apiUrl}/${id}`).toPromise();
+    return response;
+  }
+
   async create(payload: any): Promise<IContact> {
     const response: IContact = await this.http.post<IContact>(this.apiUrl, payload).toPromise();
     return response;
