@@ -25,10 +25,10 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Ações </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" (click)="dvdAdd(element)">
+        <button mat-icon-button class="color-primary" (click)="dvdAdd(element)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="primary" (click)="deleteDvd(element.id)">
+        <button mat-icon-button class="color-primary" (click)="deleteDvd(element.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
